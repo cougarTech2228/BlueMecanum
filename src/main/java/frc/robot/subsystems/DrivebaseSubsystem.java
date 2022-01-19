@@ -15,7 +15,7 @@ public class DrivebaseSubsystem extends SubsystemBase {
     private WPI_TalonSRX m_leftFront = new WPI_TalonSRX(Constants.LEFT_FRONT_MOTOR_CAN_ID);
     private WPI_TalonSRX m_leftBack = new WPI_TalonSRX(Constants.LEFT_REAR_MOTOR_CAN_ID);
 
-    private static final int kJoystickChannel = 3;
+    private static final int kJoystickChannel = 0;
 
     private MecanumDrive m_robotDrive;
     private Joystick m_stick;
