@@ -15,7 +15,7 @@ public class DrivebaseSubsystem extends SubsystemBase {
     private WPI_TalonSRX m_leftFront = new WPI_TalonSRX(Constants.LEFT_FRONT_MOTOR_CAN_ID);
     private WPI_TalonSRX m_leftBack = new WPI_TalonSRX(Constants.LEFT_REAR_MOTOR_CAN_ID);
 
-    private static final int kJoystickChannel = 0;
+    private static final int kJoystickChannel = 3;
 
     private MecanumDrive m_robotDrive;
     private Joystick m_stick;
@@ -31,6 +31,9 @@ public class DrivebaseSubsystem extends SubsystemBase {
 
         m_leftBack.follow(m_leftFront);
         m_rightBack.follow(m_rightFront);
+
+        m_rightFront.setInverted(true);
+        m_rightBack.setInverted(true);
 
         m_leftFront.setNeutralMode(NeutralMode.Brake);
         m_leftBack.setNeutralMode(NeutralMode.Brake);
@@ -61,9 +64,9 @@ public class DrivebaseSubsystem extends SubsystemBase {
     public void periodic() {
         // This method will be called once per scheduler run
 
-        m_robotDrive.driveCartesian(deadband(-m_stick.getZ()),
+        m_robotDrive.driveCartesian(deadband(-m_stick.getY()),
                 deadband(m_stick.getX()),
-                deadband(m_stick.getY()));
+                deadband(m_stick.getZ()));
     }
 
     public Joystick getJoystick() {
